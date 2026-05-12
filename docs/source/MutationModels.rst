@@ -3,10 +3,10 @@ Mutation Model & Expression Configuration Guide
 
 This document explains the different mutation models supported by the tool and explains the macros defined in ``LSHGlobals.h`` which are useful in configuring the models.
 
-The current version of BioHasher contains two mutation models:
+The current version of BioLSHasher contains two mutation models:
 
 1. **Substitution Only mutation model**: Performs only point substitutions across the
-   input sequence based on the mutation rate :math:`e_{s} \in [0,1]`. BioHasher samples
+   input sequence based on the mutation rate :math:`e_{s} \in [0,1]`. BioLSHasher samples
    :math:`e_{s}` uniformly from the domain :math:`[0,1]`.
  
 2. **SubIndel mutation model**: Performs substitutions and deletions as point

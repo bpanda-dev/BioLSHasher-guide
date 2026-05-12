@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'BioLSHasher'
+copyright = '2026, Bikram Kumar Panda'
+author = 'Bikram Kumar Panda'
 
 release = '0.1'
 version = '0.1.0'

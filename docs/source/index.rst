@@ -1,19 +1,19 @@
-Welcome to BioLSHasher's documentation!
+Welcome to BioLSHasher!
 ===================================
 
-**BioLSHasher** (/Bio'L'S'Hasher/) is a C++ based benchmarking framework for testing Locality Sensitive Hashing Functions under Biologically relevant mutation models and sequences. It is based on `SMHasher3 <https://gitlab.com/fwojcik/smhasher3>` which we have modified for use for sequence analysis.
+**BioLSHasher** is a C++ benchmarking framework for evaluating locality-sensitive hashing (LSH) families against biologically relevant mutation models and genomic sequence datasets. It is derived from `SMHasher3 <https://gitlab.com/fwojcik/smhasher3>`_, extended and adapted for sequence similarity search.
 
-.. It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-.. and offers a *simple* and *intuitive* API.
-
-.. Check out the :doc:`usage` section for further information, including
-.. how to :ref:`installation` the project.
+You might try BioLSHasher if you want to -
+   - Evaluate the locality-sensitive properties of your hash family.
+   - Analyse amplification behaviour via AND-OR sweeps.
+   - Sweep across hash-specific hyperparameters to find the optimal operating points.
+   - Benchmark against biologically realistic mutation models to understand to understand which mutation types degrade hashing performance the most.
+   - Evaluate approximate nearest-neighbour (ANN) search performance.
+   - Compare hash families on a common footing.
 
 .. note::
 
    This project is under active development.
-
-Hello World!
 
 
 Contents
@@ -21,6 +21,6 @@ Contents
 
 .. toctree::
 
-   usage
-   api
+   testCollisionCurve
+   testSimilaritySearch
    MutationModels
