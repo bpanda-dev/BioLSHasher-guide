@@ -3,6 +3,12 @@ Getting Started
 
 Follow these steps to get up and running with BioLSHasher.
 
+.. note::
+
+   If you encounter any issues running the following steps, please report them `here <https://github.com/bpanda-dev/BioLSHasher/issues>`__.
+
+
+
 1. Clone the Repository
 ------------------------
 
@@ -80,3 +86,4 @@ This writes all plots and processed CSVs to the ``results/`` directory under the
 .. code-block:: bash
 
    firefox ../results/Hamming/Hamming_dashboard.html
+
