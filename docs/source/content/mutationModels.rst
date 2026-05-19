@@ -1,3 +1,4 @@
+
 Mutation Models
 ===============================================
 
@@ -10,7 +11,7 @@ The current version of BioLSHasher contains two mutation models:
 
 1. **Substitution Only mutation model**: Performs only point substitutions across the input sequence based on the mutation rate :math:`e_{s} \in [0,1]`. BioLSHasher samples :math:`e_{s}` uniformly from the domain :math:`[0,1]`.
  
-2. **SubIndel mutation model**: Performs substitutions and deletions as point mutations (length 1) with the error rates :math:`e_s` and :math:`e_d`, respectively, satisfying :math:`e_s \ge 0,\ e_d < 1 \text{ and } e_s + e_d \le 1`. In contrast, for every position in sequence, insertion events are performed by sampling the length of the insertion from a geometric distribution with mean :math:`\mu \ge 0`. If the sampled insertion length at a position of the sequence is :math:`0`, there is no insertion.
+2. **SubIndel mutation model**: Performs substitutions and deletions as point mutations (unit length) with the error rates :math:`e_s` and :math:`e_d`, respectively, satisfying :math:`e_s \ge 0,\ e_d < 1 \text{ and } e_s + e_d \le 1`. In contrast, for every position in sequence, insertion events are performed by sampling the length of the insertion from a geometric distribution with mean :math:`\mu \ge 0`. If the sampled insertion length at a position of the sequence is :math:`0`, there is no insertion.
  
  .. note::
 
@@ -18,7 +19,7 @@ The current version of BioLSHasher contains two mutation models:
 
   
  .. caution::
-  A hash function may have a minimum or maximum limit to the input sequence based on the hash function's parameters. For example, in minimizers or minhash, the input sequence should be atleast the same length as the kmer or token size. If the indel rates are set to a very high value or skewed heavily towards one type, these constraints may be violated by the mutation model. For example excessively high deletion rates can shrink the sequence below the minimum required length, rendering it unhashable. (One may need to run with a different reduced parameter if this happens.)
+  A hash function may have a minimum or maximum limit to the input sequence length based on the hash function's parameters. For example, in minimizers or minhash, the input sequence should be atleast the same length as the kmer or token size. If the indel rates are set to a very high value or skewed heavily towards one type, these constraints may be violated by the mutation model. For example excessively high deletion rates can shrink the sequence below the minimum required length, rendering it unhashable. (One may need to run with a different reduced parameter if this happens.)
 
 The SubIndel mutation model inherently contains three effective degrees of freedom. To streamline testing and avoid the complexity of exploring the entire parameter space, we reduce the degrees of freedom by coupling the mutation rates via fixed functional relationships (we call these *mutation expressions*).
 
@@ -38,7 +39,7 @@ The core parameter for all configurations is the **mean insertion length**, deno
       p = \frac{1}{1+\mu}
  
 4. We then calculate a baseline reference rate, :math:`e_i`, defined as the probability
-   of generating an insertion of exactly length 1:
+   of generating an insertion of exactly unit length:
  
    .. math::
  
@@ -49,41 +50,33 @@ deletion rate (:math:`e_d`) for five distinct experimental scenarios.
 
 Mutation Expressions
 ---------------------
- 
+
+With :math:`m` is an integer and :math:`m \gt 1`, we have :
+
 1. **BALANCED**: Substitution, deletion, and length-1 insertion rates are all equal,
    i.e. :math:`e_s = e_i` and :math:`e_d = e_i`.
  
-2. **DELETION-lite**: Deletion rate is :math:`\tfrac{1}{5}` of :math:`e_i` and
-   :math:`e_s = e_i`. Sequences tend to grow slightly after mutation with new
-   nucleotides.
+2. **DELETION-lite**: Deletion rate is :math:`\tfrac{1}{m}` of :math:`e_i` and :math:`e_s = e_i`. Sequences tend to grow slightly after mutation with new nucleotides.
  
-3. **INSERTION-lite**: Both substitution and deletion rates are 5× higher,
-   i.e. :math:`e_s = 5 \cdot e_i` and :math:`e_d = 5 \cdot e_i`, meaning insertions
-   are relatively less impactful. Sequences tend to shrink.
+3. **INSERTION-lite**: Both substitution and deletion rates are m times higher, i.e. :math:`e_s = m \cdot e_i` and :math:`e_d = m \cdot e_i`, meaning insertions are relatively less impactful. Sequences tend to shrink.
  
-4. **SUBSTITUTION-lite**: Substitutions occur at :math:`\tfrac{1}{5}` of :math:`e_i`
-   and :math:`e_d = e_i`.
+4. **SUBSTITUTION-lite**: Substitutions occur at :math:`\tfrac{1}{m}` of :math:`e_i` and :math:`e_d = e_i`.
  
-5. **SUBSTITUTION-only**: Unlike the standard **Substitution Only** model where the
-   rate is drawn from :math:`[0, 1]`, here :math:`e_s` is constrained to the range
-   :math:`[0,\ (1-p)p]` where :math:`p = \tfrac{1}{1 + 0.03}`. *Note:* The sole
-   purpose of :math:`e_i` here is to set the scalar value for :math:`e_s`. For general
-   use, we recommend the standard **Substitution Only** mutation model over this
-   constrained version.
+5. **SUBSTITUTION-only**: Unlike the standard **Substitution Only** model where the rate is drawn from :math:`[0, 1]`, here :math:`e_s` is constrained to the range :math:`[0,\ (1-p)p]` where :math:`p = \tfrac{1}{1 + 0.03}`. The sole purpose of :math:`e_i` here is to set the scalar value for :math:`e_s`. For general use, we recommend the standard **Substitution Only** mutation model over this constrained version.
  
+Current default value of :math:`m` is set to 2. 
+
 ----
 
 Configuring
 -----------
  
-To set and configure the mutation models, various global variables are defined in the
-``LSHGlobals.h`` file.
+To set and configure the mutation models, various global variables are defined in the ``LSHGlobals.h`` file.
  
-Setting the Mutation Model
+STEP 1/2 : Setting the Mutation Model
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
  
-The mutation model is set via the global variable ``g_mutation_model`` in
-``LSHGlobals.cpp``.
+The mutation model is set via the global variable ``g_mutation_model`` in ``LSHGlobals.cpp``.
  
 .. list-table::
    :header-rows: 1
@@ -94,16 +87,10 @@ The mutation model is set via the global variable ``g_mutation_model`` in
      - Description
    * - ``MUTATION_MODEL_SIMPLE_SNP_ONLY``
      - 0
-     - **Substitution-only model.** Each position in the sequence is independently
-       flipped to a different base with probability equal to ``snpRate``. Sequence
-       length is **never changed** (no insertions or deletions).
+     - **Substitution-only model.**
    * - ``MUTATION_MODEL_GEOMETRIC_MUTATOR``
      - 1
-     - **SubIndel mutation model.** At each position, a substitution, deletion, or
-       stay event occurs based on probabilities (:math:`e_s`, :math:`e_d`).
-       Additionally, insertions of geometrically-distributed length are drawn at every
-       position. Sequence length **can change**. Implemented by
-       ``SequenceDataMutatorGeometric``.
+     - **SubIndel mutation model.**
  
 Edit the initializer of ``g_mutation_model`` in ``LSHGlobals.cpp``:
  
@@ -116,7 +103,7 @@ Edit the initializer of ``g_mutation_model`` in ``LSHGlobals.cpp``:
  
 ----
 
-Setting the Mutation Expression
+STEP 2/2 : Setting the Mutation Expression
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
 When using ``MUTATION_MODEL_GEOMETRIC_MUTATOR``, these macros control **the
@@ -133,24 +120,22 @@ global constant ``g_mutation_expression_type``.
      - Description
    * - ``MUTATION_EXPRESSION_BALANCED``
      - 0
-     - **Balanced.** Substitution, deletion, and length-1 insertion rates are all equal.
+     - **Balanced.**
    * - ``MUTATION_EXPRESSION_SUB_ONLY``
      - 1
-     - **Substitution only.** No deletions occur; insertion lengths are forced to 0.
-       Only substitutions happen even though SubIndel framework is the selected model.
+     - **Substitution only.**
    * - ``MUTATION_EXPRESSION_DEL_LITE``
      - 2
-     - **Deletion-lite.** Deletions occur at 1/5th the rate of substitutions. Sequences
-       tend to grow slightly.
+     - **Deletion-lite.**
    * - ``MUTATION_EXPRESSION_INS_LITE``
      - 3
-     - **Insertion-lite.** Both substitution and deletion rates are 5× higher, meaning
-       insertions are relatively less impactful. Sequences mutate more aggressively.
+     - **Insertion-lite.**
    * - ``MUTATION_EXPRESSION_SUB_LITE``
      - 4
-     - **Substitution-lite.** Substitutions occur at 1/5th the rate of deletions.
-       Sequences tend to shrink.
- 
+     - **Substitution-lite.**
+
+Edit the initializer of ``g_mutation_expression_type`` in ``LSHGlobals.cpp``:
+
 .. code-block:: cpp
  
    // ...
