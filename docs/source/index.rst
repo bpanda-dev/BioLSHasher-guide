@@ -19,13 +19,11 @@ Contents
 --------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    content/gettingStarted
    content/addingHash
    content/tests
-   content/mutationModels
    content/sequenceDataGeneration
-   content/runtimeParameters.rst
+   content/mutationModels
    content/helpFAQ
-   

@@ -15,8 +15,10 @@ The current version of BioLSHasher contains two mutation models:
  .. note::
 
 	BioLSHasher enforces a compatibility constraint: the SubIndel mutation model with non-zero probabilities is incompatible with LSH families that preserve Hamming Similarity, as indels  alter sequence length and Hamming Similarity is undefined between sequences of unequal length Selecting this combination will cause BioLSHasher to terminate execution.
+
   
-  TODO:About how indels can increase or decrease the input sequence in comparision to a parameter. Eg: for minimizers, the window length cannot be less than kmer length.
+ .. caution::
+  A hash function may have a minimum or maximum limit to the input sequence based on the hash function's parameters. For example, in minimizers or minhash, the input sequence should be atleast the same length as the kmer or token size. If the indel rates are set to a very high value or skewed heavily towards one type, these constraints may be violated by the mutation model. For example excessively high deletion rates can shrink the sequence below the minimum required length, rendering it unhashable. (One may need to run with a different reduced parameter if this happens.)
 
 The SubIndel mutation model inherently contains three effective degrees of freedom. To streamline testing and avoid the complexity of exploring the entire parameter space, we reduce the degrees of freedom by coupling the mutation rates via fixed functional relationships (we call these *mutation expressions*).
 

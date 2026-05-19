@@ -54,7 +54,7 @@ The script walks you through **10 guided steps**:
 
 .. note::
   
-  Every input is validated for naming rules and C++ keyword checks. The script will re-prompt if bad input is provided. If the hash is not an LSH candidate, the script stops with a message that BioLSHasher only supports LSH-related tests and the tests may be ineligible for other Hash types.
+  Every input is validated for naming rules and C++ keyword checks. The script will re-prompt if bad input is provided. If the hash is not an LSH candidate, the script stops with a message that BioLSHasher only supports LSH-related tests. Our tests may be ineligible for other Hash types like the scattering Hashes.
 
 **It generates:**
 
