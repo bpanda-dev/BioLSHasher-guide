@@ -72,8 +72,8 @@ The script walks you through **10 guided steps**:
 
 .. note::
 
-   **Full documentation:** See :doc:`Hash Template Generation Script documentation <hashTemplateGenerationScript>` for
-   the complete reference including validation rules, example sessions, and troubleshooting.
+  ..  **Full documentation:** See :doc:`Hash Template Generation Script documentation <hashTemplateGenerationScript>` for
+  ..  the complete reference including validation rules, example sessions, and troubleshooting.
 
 Option B: Manual Creation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
