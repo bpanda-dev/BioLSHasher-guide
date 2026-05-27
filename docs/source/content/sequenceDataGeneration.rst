@@ -1,7 +1,7 @@
 Sequence Data Generation
 ===============================================
 
-We simulate DNA sequences of a given length from :math:`\Sigma=\{A,T,G,C\}`. Right now, no other symbols are permitted. The probability of occurence of the symbols in the sequence is decided by either Uniform Sampling or by categorical sampling.
+We simulate DNA sequences of a given length from the nucleotide alphabet :math:`\Sigma=\{A,T,G,C\}`. Right now, no other symbols are permitted. The probability of occurence of the symbols in the sequence is decided by either Uniform Sampling or by categorical sampling.
 
 
 Uniform Sampling

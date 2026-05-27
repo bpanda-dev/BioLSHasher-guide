@@ -4,3 +4,15 @@ BioLSHasher currently supports two tests for evaluating candidate LSH functions 
 
 .. note::
 	For a brief introduction to relevant definitions, please refer to :doc:`Hash Functions, Hash Family and Locality Sensitive Hashing <hashfunctionHashfamilyandLSH>`.
+
+1. Collision Curve Analysis
+---------------------------
+
+data 123
+
+
+2. Threshold Based Similarity Search Performance Evaluation
+-----------------------------------------------------------
+
+
+temp

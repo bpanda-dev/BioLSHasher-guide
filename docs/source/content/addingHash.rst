@@ -1,4 +1,4 @@
-Registering a new Hash Family for Testing
+Adding a novel Hash Family for Testing
 =================================================
 
 We support two approaches to add a new candidate LSH to BioLSHasher: using the **interactive template generator script**, or **manually** using the `EXAMPLE_TEMPLATE.cpp <https://github.com/bpanda-dev/BioLSHasher/blob/main/hashes/EXAMPLE_TEMPLATE.cpp>`_ file.

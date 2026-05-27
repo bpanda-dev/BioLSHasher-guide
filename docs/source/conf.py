@@ -19,6 +19,8 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.autosectionlabel',
 	'sphinx.ext.mathjax',
+	'sphinx_togglebutton',
+	'sphinx_design',
 ]
 
 intersphinx_mapping = {
