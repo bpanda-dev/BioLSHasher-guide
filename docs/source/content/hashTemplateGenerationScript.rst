@@ -290,12 +290,14 @@ When multiple sizes are selected, the script generates:
 Step 7 : LSH Candidacy
 ~~~~~~~~~~~~~~~~~~~~~~
 
-**Description**: This step is used to get confirmation from the user about the LSH status of the hash function. 
+**Description**: 
 
-BioLSHasher is a framework specifically designed for testing Locality-Sensitive Hashing (LSH) functions. All test suites in BioLSHasher evaluate LSH properties.
+.. This step is used to get confirmation from the user about the LSH status of the hash function. 
 
-- **If you answer** ``Y`` **(default):** The hash is marked as an LSH candidate and ``FLAG_HASH_LOCALITY_SENSITIVE`` will be set in the generated ``REGISTER_HASH`` block.
-- **If you answer** ``N``**:** The script exits immediately with the following message:
+.. BioLSHasher is a framework specifically designed for testing Locality-Sensitive Hashing (LSH) functions. All test suites in BioLSHasher evaluate LSH properties.
+
+.. - **If you answer** ``Y`` **(default):** The hash is marked as an LSH candidate and ``FLAG_HASH_LOCALITY_SENSITIVE`` will be set in the generated ``REGISTER_HASH`` block.
+.. - **If you answer** ``N``**:** The script exits immediately with the following message:
 
 
 <FUTURE USE: RIGHT NOW ITS JUST FOR ADDING LSH FUNCTIONS LATERON IF WE can have two paths for the code based on if its to be tested as LSH or used as a utility(nonLSH) inside an LSH.>

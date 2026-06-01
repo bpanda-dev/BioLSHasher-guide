@@ -23,6 +23,7 @@ Contents
 
    content/gettingStarted
    content/addingHash
+   content/runtimeParameters
    content/tests
    content/sequenceDataGeneration
    content/mutationModels
