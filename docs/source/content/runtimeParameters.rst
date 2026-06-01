@@ -83,7 +83,16 @@ To control the AND-OR amplification for the collision test, we set the following
 		Coll_Num_Hashes_To_Or_Sweep_End = 5
 
 	This sets :math:`b \in \{1, 2, 3, 4, 5\}` and :math:`r \in \{1, 2, 3, 4, 5\}`. The collision test runs once for each of the 25 combinations :math:`(b, r)`, sweeping the full grid from :math:`(1, 1)` to :math:`(5, 5)`.
-	
+
+- There are three **speed levels** which depends on the hash computation time. There are very_slow, slow, and default.Increase any of the values will increase the runtime of the tests. 
+
+	- ``very_Slow_NSeq = 1000``	
+	- ``very_Slow_NHashes = 1000``
+	- ``Slow_NSeq = 3000``	
+	- ``Slow_NHashes = 1500``
+	- ``NSeq = 5000`` 		
+	- ``NHashes = 2000`` 
+
 ----
 
 3. Similarity Search Test Configuration
@@ -131,21 +140,17 @@ To control the AND-OR amplification for the collision test, we set the following
 - **Categorical Distribution Probabilities**
 	
 	Used only when ``are_Bases_Drawn_From_Uniform_Distribution = false``.
+	
 	Probabilities for {A, C, G, T} - must sum to 1.0
 	
 	- ``Categorical_Distribution_Probabilities = [0.25, 0.25, 0.25, 0.25]``
 
 
-- There are three **speed levels** which depends on the hash computation time. There are very_slow, slow, and default.Increase any of the values will increase the runtime of the tests. 
+- There are three **speed levels** which depends on the hash computation time. There are very_slow, slow, and default. Increase the values will increase the runtime of the tests. 
 
 	- ``very_Slow_NAggCases = 200000``
-	- ``very_Slow_NSeq = 1000``	
-	- ``very_Slow_NHashes = 1000``
 	- ``Slow_NAggCases = 200000``
-	- ``Slow_NSeq = 3000``	
-	- ``Slow_NHashes = 1500``
 	- ``NAggCases = 200000``	
-	- ``NSeq = 5000`` 		
-	- ``NHashes = 2000`` 
+
 
 ----
