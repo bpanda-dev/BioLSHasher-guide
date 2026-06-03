@@ -28,3 +28,17 @@ Contents
    content/sequenceDataGeneration
    content/mutationModels
    content/helpFAQ
+
+----
+
+Documentation Layout
+--------------------
+
+.. figure:: ../media/DocumentationLayout.png
+   :alt: Documentation Layout
+   :width: 400px
+   :align: center
+
+   Documentation Layout
+
+

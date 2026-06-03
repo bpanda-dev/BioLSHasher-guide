@@ -9,7 +9,7 @@ General
 
 **Which similarity metrics are supported out of the box?**
    BioLSHasher includes built-in support for ``Hamming``, ``Jaccard``, ``Cosine``, ``Angular``, and ``Edit`` distance. Custom similarity metrics can also be registered by providing a C++ function implementation.
-   
+
 
 Adding a New Hash Function
 ---------------------------
@@ -50,3 +50,37 @@ Output and Reporting
 
 **The output filename reflects the similarity metric, not my hash name. Is this a bug?**
    This is intentional. Since hash function comparisons are only meaningful under the same similarity metric, encoding the metric in the output name ensures results are never inadvertently compared across different metrics.
+
+Plotting Error
+--------------
+
+If you encounter an error similar to the following while generating reports and plots:
+
+   .. code-block:: bash
+
+      --- Processing Collision Curve data: ../results/collisionResults_Hamming.csv ---
+      Reading: ../results/collisionResults_Hamming.csv
+      Traceback (most recent call last):
+      File "~/BioLSHasher/analysis/plot_collisioncurve.py", line 1208, in <module>
+         main()
+      File "~/BioLSHasher/analysis/plot_collisioncurve.py", line 1079, in main
+         sections, df = read_collision_data_complete(args.csvfile)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "~/BioLSHasher/analysis/plot_collisioncurve.py", line 102, in read_collision_data_complete
+         collision_rates = [float(x.strip()) for x in line_content.split(',')]
+                           ^^^^^^^^^^^^^^^^
+      ValueError: could not convert string to float: ''
+      Error occurred while plotting collision curve.
+
+
+this usually indicates that the output CSV file has been corrupted or partially overwritten during either the current run or during previous experiment(s). This is applicable for both: Collision Test and Similarity Search Test.
+
+**Solution:** Delete the existing results CSV file and rerun the experiment so that a clean output file is generated.
+
+For example:
+
+   .. code-block:: bash
+      
+      rm ../results/collisionResults_Hamming.csv
+   
+Then rerun the experiment and regenerate the plots.
