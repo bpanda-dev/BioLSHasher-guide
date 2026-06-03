@@ -4,7 +4,7 @@ Runtime Configurations Guide
 The `config.toml <https://github.com/bpanda-dev/BioLSHasher/blob/main/config.toml>`_ file controls the runtime parameters of the tests in BioLSHasher. This TOML(Tom's Obvious Minimal Language) file is provided as a convenience, so that one does not need to dig into the cpp files to modify them.
 
 Contents and Sections in `config.toml`
-------------------------------------
+---------------------------------------
 The `config.toml` file is organized into the following sections based on the test and the scale(common or specific to a test) of the properties.:
 
 .. note::
@@ -140,7 +140,7 @@ To control the AND-OR amplification for the collision test, we set the following
 - **Categorical Distribution Probabilities**
 	
 	Used only when ``are_Bases_Drawn_From_Uniform_Distribution = false``.
-	
+
 	Probabilities for {A, C, G, T} - must sum to 1.0
 	
 	- ``Categorical_Distribution_Probabilities = [0.25, 0.25, 0.25, 0.25]``
@@ -152,5 +152,3 @@ To control the AND-OR amplification for the collision test, we set the following
 	- ``Slow_NAggCases = 200000``
 	- ``NAggCases = 200000``	
 
-
-----

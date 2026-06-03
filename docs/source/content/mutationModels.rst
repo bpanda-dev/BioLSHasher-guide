@@ -74,7 +74,7 @@ Configuring
 To set and configure the mutation models, various global variables are defined in the ``LSHGlobals.h`` file.
  
 STEP 1/2 : Setting the Mutation Model
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
 The mutation model is set via the global variable ``g_mutation_model`` in ``LSHGlobals.cpp``.
  
@@ -104,7 +104,7 @@ Edit the initializer of ``g_mutation_model`` in ``LSHGlobals.cpp``:
 ----
 
 STEP 2/2 : Setting the Mutation Expression
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  
 When using ``MUTATION_MODEL_GEOMETRIC_MUTATOR``, these macros control **the
 relationship** between the insertion mean length given by geometric mean parameter

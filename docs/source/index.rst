@@ -34,7 +34,7 @@ Contents
 Documentation Layout
 --------------------
 
-.. figure:: ../media/DocumentationLayout.png
+.. figure:: ./media/DocumentationLayout.png
    :alt: Documentation Layout
    :width: 400px
    :align: center
@@ -42,3 +42,11 @@ Documentation Layout
    Documentation Layout
 
 
+.. toctree::
+   :maxdepth: 1
+   :hidden:
+
+   content/hashTemplateGenerationScript
+   content/outputFileFormats
+   content/hashfunctionHashfamilyandLSH
+   content/citation
