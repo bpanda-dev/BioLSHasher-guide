@@ -5,7 +5,7 @@ General
 --------
 
 **What types of hash functions does BioLSHasher support?**
-   Tests in BioLSHasher are designed exclusively for LSH candidates. However it is still possible to add non-LSH functions manually (See :ref:`addingHash-nonLSHfunctions` for more details.) as helper hash functions used internally as an utility from within the LSH implementations. For example: in MinHash, which requires a general-purpose scattering function such as FNV or MurmurHash to hash individual tokens before computing the minimum.
+   BioLSHasher supports both LSH candidate hash functions and non-LSH helper hash functions. The testing framework is designed specifically for LSH candidates. Non-LSH hash functions(or helper hash functions) can still be added using ``createHashTemplate.py`` by marking them as not being LSH candidates in step 7 of the script, or they can be added manually using the ``EXAMPLE_TEMPLATE.cpp``. These helper hashes are intended for internal use inside LSH implementations, such as in MinHash, where a general-purpose scattering function like FNV or MurmurHash is used to hash individual tokens before selecting the minimum value.
 
 **Which similarity metrics are supported out of the box?**
    BioLSHasher includes built-in support for ``Hamming``, ``Jaccard``, ``Cosine``, ``Angular``, and ``Edit`` distance. Custom similarity metrics can also be registered by providing a C++ function implementation.

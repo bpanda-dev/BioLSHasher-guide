@@ -292,37 +292,19 @@ When multiple sizes are selected, the script generates:
 Step 7 : LSH Candidacy
 ~~~~~~~~~~~~~~~~~~~~~~
 
-**Description**: 
+**Description**: This step determines whether the hash function should be treated as an LSH candidate or as a non-LSH helper hash function.
 
-.. This step is used to get confirmation from the user about the LSH status of the hash function. 
+BioLSHasher supports both LSH candidate hash functions and non-LSH helper hash functions. However, the test infrastructure is designed for evaluating LSH properties, so only hashes marked as LSH candidates are allowed to be tested in LSH-specific tests.
 
-.. BioLSHasher is a framework specifically designed for testing Locality-Sensitive Hashing (LSH) functions. All test suites in BioLSHasher evaluate LSH properties.
-
-.. - **If you answer** ``Y`` **(default):** The hash is marked as an LSH candidate and ``FLAG_HASH_LOCALITY_SENSITIVE`` will be set in the generated ``REGISTER_HASH`` block.
-.. - **If you answer** ``N``**:** The script exits immediately with the following message:
-
-
-<FUTURE USE: RIGHT NOW ITS JUST FOR ADDING LSH FUNCTIONS LATERON IF WE can have two paths for the code based on if its to be tested as LSH or used as a utility(nonLSH) inside an LSH.>
-
-.. code-block:: text
-
-   ============================================================
-     BioLSHasher only contains tests related to Locality-Sensitive
-     Hashing (LSH). Non-LSH hash functions are not supported by
-     the current test infrastructure.
-
-     If you believe your hash has LSH properties, please rerun
-     this script and select 'Y' at the LSH candidacy step.
-   ============================================================
-
-.. note::
-
-   This is the only step where the script can exit early. All other steps re-prompt on invalid input.
+- **If you answer** ``Y`` **(default):** The hash is marked as an LSH candidate, and ``FLAG_HASH_LOCALITY_SENSITIVE`` is set in the generated ``REGISTER_HASH`` block.
+- **If you answer** ``N`` **:** The hash is treated as a non-LSH/helper hash function. It can still be added to BioLSHasher, but it is intended for use as a utility function inside LSH implementations rather than being tested as an LSH candidate. Please refer :doc:`Call a helper hash function inside an LSH implementation<helperhashfunctionusage>` to see how to use a helper hash function inside an LSH implementation.
 
 ----
 
-Step 8 : Similarity Name
+Step 8 : Similarity Name 
 ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Only applicable for LSH Candidate*
 
 **Description**: Enter the name of the similarity measure that your hash function preserves. BioLSHasher has built-in implementations for the following similarity metrics:
 
@@ -372,6 +354,8 @@ You may also enter a **custom similarity name** if your metric is not listed abo
 
 Step 9 : Similarity Function
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*Only applicable for LSH Candidate*
 
 **Description**: This step behaves differently depending on whether the similarity name from Step 10 is a built-in or custom metric.
 
