@@ -1,6 +1,11 @@
 BioLSHasher Documentation
 ==================================
 
+.. figure:: ./media/BioLSHasherLogo.png
+   :alt: Logo
+   :width: 600px
+   :align: center
+
 .. note::
 
    This project is under active development.
