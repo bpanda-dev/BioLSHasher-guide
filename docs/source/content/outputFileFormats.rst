@@ -1,6 +1,6 @@
-Output Custom CSV format
-========================
-
+Custom Output CSV formats
+=========================
+BioLSHasher returns the results of the tests in a custom csv format. Running the ``generate_report.py`` in analysis directory generates the standard csv files for the specified output files along with the plots.
 
 Collision Curve Test Output Tags
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -8,10 +8,15 @@ Collision Curve Test Output Tags
 .. list-table::
    :header-rows: 1
 
+
    * - Tag
      - Content
-   * - ``:1:`` - ``:3:``
-     - Header, column names, values
+   * - ``:1:``
+     - Section header: ``LSH Collision Test Results``
+   * - ``:2:``
+     - Column names: ``Hashname, SequenceLength, Distance Metric, Mutation Model, Mutation Expression``
+   * - ``:3:``
+     - Values: hash name, sequence length, similarity metric name, mutation model enum, mutation expression type
    * - ``:4.x:``
      - Hash-specific parameters
    * - ``:13:``
@@ -29,7 +34,6 @@ Collision Curve Test Output Tags
 Threshold Based Similarity Search Test Output Tags
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 .. list-table::
    :header-rows: 1
 
@@ -42,12 +46,11 @@ Threshold Based Similarity Search Test Output Tags
    * - ``:3:``
      - Values: hash name, sequence length, similarity metric name, mutation model enum, mutation expression type
    * - ``:4.x:``
-     - Hash-specific parameters (written by ``hinfo->printParameters(out_file)``, same mechanism as Collision Curve)
+     - Hash-specific parameters
    * - ``:5:``
      - Results table column header: ``b, r, c, Avg_Recall, Avg_Precision, Avg_FPR, Avg_Query_Time_ms, Avg_Index_Size_MB``
    * - ``:6:``
-     - Per ``(b, r, c)`` result row: b, r, c value, avg recall, avg precision, avg FPR, avg query time (ms), avg index size (MB) — one row per combination, averaged over ``NUM_RUNS`` runs
+     - Per ``(b, r, 1)`` result row: b, r, 1 value, avg recall, avg precision, avg FPR, avg query time (ms), avg index size (MB) : one row per combination, averaged over ``NUM_RUNS`` runs
 
 **Notes:**
-- ``:13:`` (raw aggregation error parameters) is present in the code but **commented out** — it is not emitted in the current build.
-- Tags ``:7:``–``:9:``, ``:14:`` (geometric mutation params) and ``:10:``–``:12:`` (AND-OR collision rates per ``(b,r)``) do **not** appear in this test — those belong exclusively to the Collision Curve test.
+The defunct parameter ``c`` is set to 1. This parameter is carried from an old implementation which is not functional in this version. It was for c-ANN implementation and it not used now.
