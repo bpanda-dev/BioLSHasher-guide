@@ -598,4 +598,3 @@ Notes
 - The script can be cancelled at any point with ``Ctrl+C`` - no files will be written until final confirmation.
 - If you select a **single bit size**, the function and registration use the bare hash name (e.g., ``MyHash``). If you select **multiple bit sizes**, each variant gets a suffix (e.g., ``MyHash_32``, ``MyHash_64``).
 - If you choose a **built-in similarity metric**, the full C++ implementation is injected into the generated file along with the necessary ``#include`` headers. If you choose a **custom metric**, a stub function is generated that you must implement.
-.. - The only early exit point is **Step 9 (LSH Candidacy)** - if you indicate the hash is not an LSH candidate, the script terminates because BioLSHasher's test suites only evaluate LSH properties.
