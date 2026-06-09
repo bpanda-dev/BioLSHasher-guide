@@ -1,3 +1,7 @@
+:orphan:
+
+.. _hashfunctionshashfamilyandLSH:
+
 Hash Function, Hash Family and Locality Sensitive Hashing
 =========================================================
 
@@ -33,4 +37,4 @@ This is equivalent to saying that for all :math:`x, y \in U`,
 
    \Pr_{h_\theta \in \mathcal{H}}[h_\theta(x)=h_\theta(y)] = sim(x,y)
 
-   
+The above equation is represented by the curve 2 in the figure above.

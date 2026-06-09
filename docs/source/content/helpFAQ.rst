@@ -23,7 +23,8 @@ Adding a New Hash Function
 **My hash function has tunable parameters (e.g., k-mer size). How do I handle this?**
    Use Step 10 of ``createHashTemplate.py`` to register named parameters. Each parameter is emitted as a ``#define`` macro at the top of the generated ``.cpp`` file, making it easy to adjust values without modifying the core logic. Registering your hash parameters allows BioLSHasher to associate, each test result with the exact parameters it ran with.
 
-**My LSH candidate function requires another helper hash function to run. But since the helper hash function is not an LSH how do I add it into the module. **
+**My LSH candidate function requires another helper hash function to run. But since the helper hash function is not an LSH how do I add it into the module.**
+
 
 Running Tests
 --------------

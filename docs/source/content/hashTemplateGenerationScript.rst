@@ -1,3 +1,5 @@
+:orphan:
+
 Hash Template Generator for BioLSHasher
 ========================================
 
