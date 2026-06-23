@@ -55,3 +55,5 @@ source_suffix = {
 
 
 autosummary_generate = True
+
+html_extra_path = ['static']
